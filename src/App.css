@@ -32,6 +32,9 @@
   .mini-guess {
     width: 8.5vh !important;
     height: 8.5vh !important;
+  }
+
+  .guess-right .mini-guess {
     margin-right: 1em !important;
   }
 
@@ -204,6 +207,7 @@
   max-height: calc(100vh - 1em);
   margin-bottom: 1em;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .guess {

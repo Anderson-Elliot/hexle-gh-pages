@@ -67,13 +67,19 @@ function App() {
 
   const [previewIndex, setPreviewIndex] = useState(() => 0);
   const [modalShown, setModalShown] = useState(() => false);
-  const [mute, setMute] = useState(() => false);
+  const [mute, setMute] = useState(() => localStorage.getItem('hexle:mute')?.valueOf() === 'true' || false);
   const [guesses, setGuesses] = useState(() => [createGuess()]);
   const [red, setR] = useState(() => randomIntFromInterval(0, 255));
   const [green, setG] = useState(() => randomIntFromInterval(0, 255));
   const [blue, setB] = useState(() => randomIntFromInterval(0, 255));
   const [victory, setVictory] = useState(() => null);
-  const [useSliders, setUseSliders] = useState(() => true);
+  const [useSliders, setUseSliders] = useState(() => {
+    const val = localStorage.getItem('hexle:useSliders');
+    if (!val)
+      return true;
+
+    return val.valueOf() === 'true' || false
+  });
   const [isIos] = useState(() => [
       'iPad Simulator',
       'iPhone Simulator',
@@ -131,7 +137,7 @@ function App() {
       // Scroll to bottom of guess container.
       const objDiv = document.getElementById("right-div");
       objDiv.scrollTop = objDiv.scrollHeight;
-    }, 100);
+    }, 10);
   }
   const getColorString = (g) => {
     return `#${g.r < 16 ? `0${g.r.toString(16)}` : g.r.toString(16)}${g.g < 16 ? `0${g.g.toString(16)}` : g.g.toString(16)}${g.b < 16 ? `0${g.b.toString(16)}` : g.b.toString(16)}`;
@@ -152,6 +158,7 @@ function App() {
   }
 
   const handleSlidersChange = () => {
+    localStorage.setItem('hexle:useSliders', !useSliders);
     setUseSliders(!useSliders);
   };
 
@@ -190,6 +197,11 @@ function App() {
     setPreviewIndex(i);
     setModalShown(true);
   }
+
+  const toggleMute = () => {
+    localStorage.setItem('hexle:mute', !mute);
+    setMute(!mute);
+  }
   
   const guessCards = guesses.map((g, i) =>
     <Guess className="guess" key={i} g={g} i={i} aR={red} aG={green} aB={blue} victory={victory}
@@ -208,7 +220,7 @@ function App() {
     <div className={`App ${isIos ? 'ios' : ''}`}>
       <div className="floating-corner">
         <img src={mute ? muteIco : unmuteIco} className={`mute-icon ${mute ? 'active' : ''}`}
-          alt="mute" onClick={e => setMute(!mute)} />
+          alt="mute" onClick={() => toggleMute()} />
         <label className="switch">
           <input type="checkbox" checked={useSliders} onChange={handleSlidersChange} />
           <span className="slider"></span>
@@ -235,8 +247,8 @@ function App() {
           {/* {ads} */}
         </div>
       </div>
-      <div className="right" id="right-div">
-        <div className="right-inner">
+      <div className="right">
+        <div className="right-inner" id="right-div">
           { guessCards }
         </div>
       </div>
