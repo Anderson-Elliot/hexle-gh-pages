@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/hexle-gh-pages/static/css/main.35e328b8.css",
-    "main.js": "/hexle-gh-pages/static/js/main.68ebc566.js",
-    "static/js/787.05d9afa7.chunk.js": "/hexle-gh-pages/static/js/787.05d9afa7.chunk.js",
-    "static/media/Reset.wav": "/hexle-gh-pages/static/media/Reset.d6775314c2520bf31474.wav",
-    "static/media/Lose.wav": "/hexle-gh-pages/static/media/Lose.940d14aaf99ba690889f.wav",
-    "static/media/Win.wav": "/hexle-gh-pages/static/media/Win.ad78b355d10d80bd8902.wav",
-    "static/media/Guess.wav": "/hexle-gh-pages/static/media/Guess.5b08c69b8ebd31610295.wav",
-    "static/media/volume.png": "/hexle-gh-pages/static/media/volume.99e68dcad561cdbd0822.png",
-    "index.html": "/hexle-gh-pages/index.html",
-    "main.35e328b8.css.map": "/hexle-gh-pages/static/css/main.35e328b8.css.map",
-    "main.68ebc566.js.map": "/hexle-gh-pages/static/js/main.68ebc566.js.map",
-    "787.05d9afa7.chunk.js.map": "/hexle-gh-pages/static/js/787.05d9afa7.chunk.js.map"
+    "main.css": "/static/css/main.35e328b8.css",
+    "main.js": "/static/js/main.fdf4559e.js",
+    "static/js/787.05d9afa7.chunk.js": "/static/js/787.05d9afa7.chunk.js",
+    "static/media/Reset.wav": "/static/media/Reset.d6775314c2520bf31474.wav",
+    "static/media/Lose.wav": "/static/media/Lose.940d14aaf99ba690889f.wav",
+    "static/media/Win.wav": "/static/media/Win.ad78b355d10d80bd8902.wav",
+    "static/media/Guess.wav": "/static/media/Guess.5b08c69b8ebd31610295.wav",
+    "static/media/volume.png": "/static/media/volume.99e68dcad561cdbd0822.png",
+    "index.html": "/index.html",
+    "main.35e328b8.css.map": "/static/css/main.35e328b8.css.map",
+    "main.fdf4559e.js.map": "/static/js/main.fdf4559e.js.map",
+    "787.05d9afa7.chunk.js.map": "/static/js/787.05d9afa7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.35e328b8.css",
-    "static/js/main.68ebc566.js"
+    "static/js/main.fdf4559e.js"
   ]
 }
