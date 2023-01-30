@@ -43,6 +43,12 @@ export function Guess(props) {
     };
     props.handleGuessChange(newG, i);
   }
+  
+  const bump = (name, direction, step) => {
+    const oldVal = g[name];
+    const value = direction === 'up' ? oldVal + step : oldVal - step;
+    handleValueChange(name, { target: { value }})
+  }
 
   const handleGuess = () => {
     const newG = {
@@ -58,23 +64,29 @@ export function Guess(props) {
       <div className="guess-container">
         { !g.submitted &&
           <div className={ `values ${props.useSliders ? 'sliders' : 'inputs'}` }>
-            <span>
+            <span className="slider-wrapper">
               <label className={`label ${!props.useSliders ? '' : 'unsubmitted'} r`}>R</label>
+              <span className="bump down prevent-select" onClick={() => bump('r', 'down', 5)}>{ '<' }</span>
               <input id={`ipt-r`} step="5" className={`num ${props.useSliders ? 'sliders': ''} r`}
                 type={ props.useSliders ? 'range' : 'number' } min={0} max={255} name="r"
                 value={g.r} onChange={event => handleValueChange('r', event)} />
+              <span className="bump up prevent-select" onClick={() => bump('r', 'up', 5)}>{ '>' }</span>
             </span>
-            <span>
+            <span className="slider-wrapper">
               <label className={`label ${!props.useSliders ? '' : 'unsubmitted'} g`}>G</label>
+              <span className="bump down prevent-select" onClick={() => bump('g', 'down', 5)}>{ '<' }</span>
               <input id={`ipt-g`} step="5" className={`num ${props.useSliders ? 'sliders': ''} g`}
                 type={ props.useSliders ? 'range' : 'number' } min={0} max={255} name="g"
                 value={g.g} onChange={event => handleValueChange('g', event)} />
+              <span className="bump up prevent-select" onClick={() => bump('g', 'up', 5)}>{ '>' }</span>
             </span>
-            <span>
+            <span className="slider-wrapper">
               <label className={`label ${!props.useSliders ? '' : 'unsubmitted'} b`}>B</label>
+              <span className="bump down prevent-select" onClick={() => bump('b', 'down', 5)}>{ '<' }</span>
               <input id={`ipt-b`} step="5" className={`num ${props.useSliders ? 'sliders': ''} b`}
                 type={ props.useSliders ? 'range' : 'number' } min={0} max={255} name="b"
                 value={g.b} onChange={event => handleValueChange('b', event)} />
+              <span className="bump up prevent-select" onClick={() => bump('b', 'up', 5)}>{ '>' }</span>
             </span>
           </div>
         }
@@ -110,23 +122,29 @@ export function Guess(props) {
         { g.submitted && props.useSliders &&
           <>
           <div className={ `values ${props.useSliders ? 'sliders' : 'inputs'}` }>
-            <span>
+            <span className="slider-wrapper">
               <label className="label sliders r">R</label>
+              <span className="bump down prevent-select disabled">{ '<' }</span>
               <input className={`num submitted ${props.useSliders ? 'sliders': ''} r ${Math.abs(props.aR - g.r) < correct ? 'correct' : ''} ${Math.abs(props.aR - g.r) < close ? 'close' : ''}`} disabled
                 type={ props.useSliders ? 'range' : 'number' } min={0} max={255} name="r"
                 value={g.r} />
+              <span className="bump up prevent-select disabled">{ '>' }</span>
             </span>
-            <span>
+            <span className="slider-wrapper">
               <label className="label sliders g">G</label>
+              <span className="bump down prevent-select disabled">{ '<' }</span>
               <input className={`num submitted g ${props.useSliders ? 'sliders': ''} ${Math.abs(props.aG - g.g) < correct ? 'correct' : ''} ${Math.abs(props.aG - g.g) < close ? 'close' : ''}`} disabled
                 type={ props.useSliders ? 'range' : 'number' } min={0} max={255} name="g"
                 value={g.g} />
+              <span className="bump up prevent-select disabled">{ '>' }</span>
             </span>
-            <span>
+            <span className="slider-wrapper">
               <label className="label sliders b">B</label>
+              <span className="bump down prevent-select disabled">{ '<' }</span>
               <input className={`num submitted b ${props.useSliders ? 'sliders': ''} ${Math.abs(props.aB - g.b) < correct ? 'correct' : ''} ${Math.abs(props.aB - g.b) < close ? 'close' : ''}`} disabled
                 type={ props.useSliders ? 'range' : 'number' } min={0} max={255} name="b"
                 value={g.b} />
+              <span className="bump up prevent-select disabled">{ '>' }</span>
             </span>
           </div>
           <div className="guess-right">
