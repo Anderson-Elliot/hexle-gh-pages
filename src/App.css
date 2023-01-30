@@ -5,6 +5,7 @@
   overflow: hidden;
   flex-direction: row;
   font-family: 'Source Code Pro', monospace;
+  background-color: black;
 }
 
 
@@ -131,6 +132,8 @@
   background-color: #111111;
   height: 100vh;
   overflow: hidden;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
 }
 
 .vertical-container {
@@ -198,6 +201,7 @@
   height: fit-content;
   border: 1px solid gray;
   background-color: #222222;
+  border-radius: 0.5em;
 }
 
 .guess-container {
@@ -233,6 +237,7 @@
 .guess-container .bump.disabled {
   color: #666;
   cursor: pointer;
+  pointer-events: none;
 }
 
 .guess-container .bump:hover {
