@@ -72,6 +72,9 @@ function App() {
   const [red, setR] = useState(() => randomIntFromInterval(0, 255));
   const [green, setG] = useState(() => randomIntFromInterval(0, 255));
   const [blue, setB] = useState(() => randomIntFromInterval(0, 255));
+  const [revealedR, setRevealedR] = useState(() => 0);
+  const [revealedG, setRevealedG] = useState(() => 0);
+  const [revealedB, setRevealedB] = useState(() => 0);
   const [victory, setVictory] = useState(() => null);
   const [useSliders, setUseSliders] = useState(() => {
     const val = localStorage.getItem('hexle:useSliders');
@@ -108,7 +111,35 @@ function App() {
   }
 
   const guessPasses = (g) => {
-    return Math.abs(red - g.r) < correct && Math.abs(green - g.g) < correct && Math.abs(blue - g.b) < correct;
+    const rPasses = Math.abs(red - g.r) < correct;
+    const gPasses = Math.abs(green - g.g) < correct;
+    const bPasses = Math.abs(blue - g.b) < correct;
+    const rClose = Math.abs(red - g.r) < close;
+    const gClose = Math.abs(green - g.g) < close;
+    const bClose = Math.abs(blue - g.b) < close;
+
+    /** R */
+    if (rPasses)
+      setRevealedR(2);
+    else if (rClose)
+      setRevealedR(1);
+    else setRevealedR(0);
+
+    /** G */
+    if (gPasses)
+      setRevealedG(2);
+    else if (gClose)
+      setRevealedG(1);
+    else setRevealedG(0);
+
+    /** R */
+    if (bPasses)
+      setRevealedB(2);
+    else if (bClose)
+      setRevealedB(1);
+    else setRevealedB(0);
+
+    return rPasses && gPasses && bPasses;
   }
 
   const handleGuessSubmit = (guess, index) => {
@@ -149,6 +180,9 @@ function App() {
     setR(randomIntFromInterval(0, 255));
     setG(randomIntFromInterval(0, 255));
     setB(randomIntFromInterval(0, 255));
+    setRevealedR(0);
+    setRevealedG(0);
+    setRevealedB(0);
     setGuesses([createGuess()]);
 
     setTimeout(() => {
@@ -206,7 +240,8 @@ function App() {
   const guessCards = guesses.map((g, i) =>
     <Guess className="guess" key={i} g={g} i={i} aR={red} aG={green} aB={blue} victory={victory}
       close={close} correct={correct} colorString={getColorString(g)} useSliders={useSliders}
-      handleGuessChange={handleGuessChange} handleGuessSubmit={handleGuessSubmit} openPreview={openPreviewModal}>
+      handleGuessChange={handleGuessChange} handleGuessSubmit={handleGuessSubmit} openPreview={openPreviewModal}
+      revealedR={revealedR} revealedG={revealedG} revealedB={revealedB}>
     </Guess>
   );
 

@@ -191,8 +191,8 @@
 .preview-label {
   color: white;
   font-weight: bold;
-  font-size: 4rem;
-  line-height: 4rem;
+  font-size: 3.5rem;
+  line-height: 3.5rem;
 }
 
 .right {
@@ -416,11 +416,11 @@ input[type=range]::-webkit-slider-thumb {
   border-top-color: #aaa;
 }
 
-.num.sliders.submitted.close::-webkit-slider-thumb {
+.num.sliders.close::-webkit-slider-thumb {
   border-top-color: rgb(255, 255, 111) !important;
 }
 
-.num.sliders.submitted.correct::-webkit-slider-thumb {
+.num.sliders.correct::-webkit-slider-thumb {
   border-top-color: rgb(56, 163, 56) !important;
 }
 
@@ -707,10 +707,6 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
   filter: invert(100%) drop-shadow(5px 3px 3px rgba(0, 0, 0, .5));
   cursor: pointer;
   text-shadow: 2px 2px 5px black;
-}
-
-.mute-icon:hover {
-  filter: invert(50%);
 }
 
 /** iOS **/
